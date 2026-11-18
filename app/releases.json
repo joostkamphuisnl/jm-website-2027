@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "enter-the-mainframe",
+    "title": "Enter The Mainframe",
+    "artist": "Juized",
+    "catalog": "JZDM003",
+    "date": "2024-09-26",
+    "image": "/media/enter-the-mainframe.webp",
+    "description": "Enter The Mainframe explores the connection between humanity and artificial intelligence. The track follows a future in which human minds become nodes in a shared digital network.",
+    "spotify": "https://open.spotify.com/album/1QECRV5FfTCwqxrcjIBfia",
+    "apple": "https://music.apple.com/us/album/enter-the-mainframe-single/1765183261",
+    "beatport": "https://www.beatport.com/release/enter-the-mainframe/4709962",
+    "soundcloud": "https://soundcloud.com/juized/juized-enter-the-mainframe",
+    "youtube": "https://www.youtube.com/watch?v=p3prqZycspo"
+  },
+  {
+    "slug": "darkness",
+    "title": "Darkness",
+    "artist": "Juized",
+    "catalog": "JZDM002",
+    "date": "2023-12-08",
+    "image": "/media/darkness.webp",
+    "description": "Darkness continues the story introduced in Black Hole, following the journey further into the unknown.",
+    "spotify": "https://open.spotify.com/track/1R87LkX6VwFHf3VdVykYCE",
+    "apple": "https://music.apple.com/us/album/darkness-single/1714635152",
+    "beatport": "https://www.beatport.com/release/darkness/4325442",
+    "soundcloud": "https://on.soundcloud.com/URm4k",
+    "youtube": "https://www.youtube.com/watch?v=8ySh1DOSmnQ"
+  },
+  {
+    "slug": "black-hole",
+    "title": "Black Hole",
+    "artist": "Juized",
+    "catalog": "JZDM001",
+    "date": "2023-09-07",
+    "image": "/media/black-hole.webp",
+    "description": "Black Hole follows an astronaut who leaves Earth and is pulled into a black hole. The track moves from a mysterious opening into heavier kicks, before an uplifting melody marks the discovery of a new world.",
+    "spotify": "https://open.spotify.com/album/05hzs52KPi4RtIn6YCpFeR",
+    "apple": "https://music.apple.com/us/album/black-hole-single/1700162198",
+    "beatport": "https://www.beatport.com/release/black-hole/4217185",
+    "soundcloud": "https://soundcloud.com/juized/black-hole",
+    "youtube": "https://www.youtube.com/watch?v=AY86acEbLtw"
+  }
+]

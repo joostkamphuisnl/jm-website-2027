@@ -1,0 +1,37 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Arrow } from "@/components/icon";
+import { Reveals } from "@/components/reveals";
+import { HeroVideo } from "@/components/hero-video";
+import releases from "./releases.json";
+
+export default function Home() {
+  return <><Header home /><main id="main"><Reveals />
+    <section className="hero" aria-labelledby="hero-heading">
+      <HeroVideo />
+      <div className="hero-shade" />
+      <div className="hero-content wrap">
+        <div className="hero-copy">
+          <p className="hero-intro">Juized Music</p>
+          <h1 id="hero-heading"><span className="headline-mask"><span>BRINGING YOU FRESH</span></span><span className="headline-mask accent"><span>HARDSTYLE MUSIC</span></span></h1>
+          <a className="button button-accent" href="#releases">Check out our releases<Arrow /></a>
+        </div>
+      </div>
+      <div className="hero-bottom wrap"><Link href="/releases/enter-the-mainframe" className="featured-release"><Image src="/media/enter-the-mainframe.webp" alt="" width={56} height={56} /><div><span className="eyebrow">LATEST RELEASE</span><strong>Enter The Mainframe</strong><span className="featured-artist">Juized</span></div><Arrow diagonal /></Link></div>
+    </section>
+
+    <section className="releases-section wrap section-space" id="releases" aria-labelledby="releases-heading">
+      <div className="section-heading" data-reveal><h2 id="releases-heading">RELEASES</h2></div>
+      <div className="release-grid">{releases.map((release, index) => <Link className="release-card" href={`/releases/${release.slug}`} key={release.slug} data-reveal style={{ transitionDelay: `${index * 60}ms` }}><div className="release-art"><Image src={release.image} alt={`${release.title} by ${release.artist} cover artwork`} width={650} height={650} sizes="(max-width: 600px) 85vw, (max-width: 900px) 43vw, 28vw" /><span className="release-catalog">{release.catalog}</span><span className="release-listen"><Arrow diagonal /><span>VIEW RELEASE</span></span></div><div className="release-info"><div><p>JUIZED <span>/</span> {release.date.slice(0, 4)}</p><h3>{release.title}</h3></div><span className="round-arrow"><Arrow diagonal /></span></div></Link>)}</div>
+    </section>
+
+    <section className="label-section" id="label" aria-labelledby="label-heading"><div className="wrap label-layout"><div className="label-title" data-reveal><h2 id="label-heading">JUIZED<br /><span className="accent">MUSIC</span></h2></div><div className="label-copy" data-reveal><p className="statement">An independent label<br />dedicated to hardstyle.</p><p>Juized Music was founded by Juized, a producer and DJ who has been part of the hardstyle scene since 2011.</p><p>We work with a small group of artists, taking the time to make each release the best it can be. Quality over quantity.</p></div></div></section>
+
+    <section className="artist-section wrap section-space" id="artists" aria-labelledby="artist-heading"><div className="section-heading" data-reveal><h2 id="artist-heading">ARTISTS</h2></div><a className="artist-feature" href="https://www.juized.nl" target="_blank" rel="noreferrer" data-reveal><div className="artist-image"><Image src="/media/juized-portrait.webp" alt="Juized, producer and founder of Juized Music" fill sizes="(max-width: 700px) 85vw, 45vw" /></div><div className="artist-content"><span className="eyebrow">PRODUCER, DJ & LABEL FOUNDER</span><h3>JUIZED</h3><p>Hardstyle since 2011.</p><p className="artist-bio">From his first releases on The Magic Show Records to sets at Defqon.1 and Rebirth Festival, Juized brings euphoric melodies and raw kicks together.</p><span className="artist-link">Visit juized.nl <span className="round-arrow"><Arrow diagonal /></span></span></div></a></section>
+
+    <section className="demo-note wrap" data-reveal><div><h2>DEMOS</h2><p>We’re not accepting demos at the moment. We’ll share any updates on our social channels.</p></div></section>
+  </main><Footer /></>;
+}
+
