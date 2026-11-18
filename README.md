@@ -1,6 +1,6 @@
 # Juized Music
 
-Next.js App Router website for the Juized Music label. Uses the original JM vector logo, original background video, verified catalogue, artwork, and streaming destinations from juizedmusic.com. Typography comes from juized.nl. The artist portrait comes from the Juized Music artist profile.
+Next.js App Router website for the Juized Music label. Uses the original JM vector logo, catalogue, artwork and artist portrait from juizedmusic.com. Typography comes from juized.nl.
 
 ## Development
 
@@ -9,7 +9,7 @@ pnpm install
 pnpm dev
 ```
 
-Open http://127.0.0.1:3000. `pnpm build` generates a static site in `out/`. Serve that directory with your static host; `next start` does not support static exports.
+Open http://127.0.0.1:3000. `pnpm build` generates a static site in `out/`. The static host should resolve clean release URLs to their `.html` files and serve the exported `.txt` navigation files as `text/plain` so playback can persist across pages.
 
 ## Checks
 
@@ -19,7 +19,20 @@ pnpm typecheck
 pnpm build
 ```
 
-Edit `app/releases.json` to update the catalogue. All release pages are generated at build time. All media and fonts are self-hosted. No CMS or demo submission service is configured. The original site says demos are closed; that policy is preserved.
+Edit `app/releases.json` to update the catalogue. Release pages and the sitemap are generated at build time. Preview URLs and current Apple track links come from the [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/), and previews stream directly from Apple after a visitor presses play. Playback continues during navigation within the site. Artwork and fonts are self-hosted.
 
-The background video is recolored in CSS. Its small pause button and reduced-motion support allow visitors to stop playback. Scroll reveals run once. The right navigation uses the browser's native Popover API for Escape and click-away dismissal.
+The original motion study in `public/media/hero-loop.mp4` plays muted. Visitors who prefer reduced motion see its poster. Regenerate both assets with `uv run --no-project --with numpy --with imageio-ffmpeg python scripts/render-hero.py`.
+
+If this build replaces the live site on juizedmusic.com, set permanent redirects on the hosting server for the old URLs:
+
+| Old URL | Destination |
+| --- | --- |
+| `/releases` | `/#releases` |
+| `/about` | `/#label` |
+| `/artists`, `/artists/juized` | `/#artists` |
+| `/releases/juized-enter-the-mainframe` | `/releases/enter-the-mainframe` |
+| `/releases/juized-darkness` | `/releases/darkness` |
+| `/releases/juized-black-hole` | `/releases/black-hole` |
+
+The favicon uses the original sidebar logo enlarged to 70% width inside the accent square. SVG, multi-resolution ICO, and an Apple touch icon are included. This project is maintained locally and has no ChatGPT Sites hosting configuration.
 

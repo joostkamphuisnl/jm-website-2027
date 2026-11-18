@@ -1,7 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
-import { createHash } from "node:crypto";
 
 const releases = JSON.parse(readFileSync(new URL("../app/releases.json", import.meta.url), "utf8"));
 test("all unique release routes have local art, valid metadata, and official streaming destinations", () => {
@@ -14,6 +13,11 @@ test("all unique release routes have local art, valid metadata, and official str
     assert.match(release.catalog, /^JZDM\d{3}$/);
     for (const platform of ["spotify", "apple", "beatport", "soundcloud", "youtube"]) assert.equal(new URL(release[platform]).protocol, "https:");
     assert.equal(new URL(release.spotify).hostname, "open.spotify.com");
+    const preview = new URL(release.preview);
+    assert.equal(preview.origin, "https://audio-ssl.itunes.apple.com");
+    assert.match(preview.pathname, /\.m4a$/);
+    assert.equal(new URL(release.apple).origin, "https://music.apple.com");
+    assert.match(new URL(release.apple).searchParams.get("i") ?? "", /^\d+$/);
   }
 });
 test("the JM vector is exactly the original site's monogram", () => {
@@ -22,7 +26,9 @@ test("the JM vector is exactly the original site's monogram", () => {
   assert.ok(logo.includes('d="M132.32 395.68L18.66 321'));
 });
 
-test("the hero uses the unchanged original background video", () => {
-  const video = readFileSync(new URL("../public/media/bg-video.mp4", import.meta.url));
-  assert.equal(createHash("sha256").update(video).digest("hex"), "45a6731ebef0b0b9fd1cfc392168c28a795e744dec3c8d059b278d3171fe6884");
+test("the hero includes its new MP4 loop and still poster", () => {
+  const video = readFileSync(new URL("../public/media/hero-loop.mp4", import.meta.url));
+  const poster = readFileSync(new URL("../public/media/hero-poster.webp", import.meta.url));
+  assert.equal(video.toString("ascii", 4, 8), "ftyp");
+  assert.equal(poster.toString("ascii", 8, 12), "WEBP");
 });
